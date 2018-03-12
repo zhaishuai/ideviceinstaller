@@ -55,7 +55,7 @@
 // this is required for old libzip...
 #define zip_get_num_entries(x, y) zip_get_num_files(x)
 #define zip_int64_t ssize_t
-#define zip_uint64_t off_t
+#define unsigned long long off_t
 #endif
 
 #define ITUNES_METADATA_PLIST_FILENAME "iTunesMetadata.plist"
@@ -555,7 +555,7 @@ static int afc_upload_file(afc_client_t afc, const char* filename, const char* d
 
 	f = fopen(filename, "rb");
 	if (!f) {
-		fprintf(stderr, "fopen: %s: %s\n", appid, strerror(errno));
+        fprintf(stderr, "fopen: %s: %s\n", appid, strerror(errno));
 		return -1;
 	}
 
@@ -925,7 +925,7 @@ run_again:
 								total += written;
 							}
 							if (total != amount) {
-								fprintf(stderr, "Error: wrote only %d of %" PRIi64 "\n", total, amount);
+//                                fprintf(stderr, "Error: wrote only %d of %" PRIi64 "\n", total, amount);
 								afc_file_close(afc, af);
 								zip_fclose(zfile);
 								free(dstpath);
